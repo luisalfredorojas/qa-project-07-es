@@ -65,7 +65,7 @@ class TestUrbanRoutes:
         routes_page.click_next_payment_method()
         routes_page.to_be_visible_close_payment_method_click()
         routes_page.close_payment_method_click()
-        assert routes_page.get_payment_method_value() == 'Tarjeta'
+        assert routes_page.get_payment_method_value() == 'Card'
 
     # Prueba para mensaje al conductor
     def test_set_message_to_driver(self):
@@ -85,6 +85,14 @@ class TestUrbanRoutes:
         routes_page.set_requirements_mantle()
         routes_page.to_be_clickable_requirements_ice_cream()
         routes_page.set_requirements_ice_cream()
+
+    def test_call_a_taxi_button(self):
+        routes_pages = pages.UrbanRoutesPage(self.driver)
+        routes_pages.to_be_visible_call_a_taxi_button()
+        assert routes_pages.get_call_a_taxi_button_value() == 'Call a taxi'
+        routes_pages.click_call_a_taxi_button()
+        routes_pages.to_be_visible_searching_taxi_header()
+        assert routes_pages.get_searching_taxi_header() == 'Car search'
 
     @classmethod
     def teardown_class(cls):

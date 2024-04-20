@@ -47,6 +47,12 @@ class UrbanRoutesPage:
     requirements_switch = (By.XPATH, '//*[@id="root"]/div/div[3]/div[3]/div[2]/div[2]/div[4]/div[2]/div[1]/div/div[2]/div')
     requirements_plus_iceCream = (By.XPATH,'//*[@id="root"]/div/div[3]/div[3]/div[2]/div[2]/div[4]/div[2]/div[3]/div/div[2]/div[1]/div/div[2]/div/div[3]')
 
+    #Modal para pedir taxi
+    call_a_taxi_button = (By.XPATH, '//*[@id="root"]/div/div[3]/div[4]/button/span[1]')
+    call_a_taxi_button_header = (By.CSS_SELECTOR, '.smart-button-main')
+    searching_taxi_button_header = (By.CSS_SELECTOR, '.order-header-title')
+
+
     def __init__(self, driver):
         self.driver = driver
 
@@ -185,3 +191,28 @@ class UrbanRoutesPage:
 
     def to_be_clickable_requirements_ice_cream(self):
         WebDriverWait(self.driver,3).until(expected_conditions.element_to_be_clickable(self.requirements_plus_iceCream))
+
+    #call a taxi modal
+    def to_be_visible_call_a_taxi_button(self):
+        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(self.call_a_taxi_button))
+
+    def click_call_a_taxi_button(self):
+        self.driver.find_element(*self.call_a_taxi_button).click()
+
+    def get_call_a_taxi_button_value(self):
+        return self.driver.find_element(*self.call_a_taxi_button_header).text
+
+    def to_be_visible_searching_taxi_header(self):
+        WebDriverWait(self.driver, 3).until(expected_conditions.visibility_of_element_located(self.searching_taxi_button_header))
+
+    def get_searching_taxi_header(self):
+        return self.driver.find_element(*self.searching_taxi_button_header).text
+
+
+
+
+
+
+
+
+
